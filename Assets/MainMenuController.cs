@@ -1,18 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void playGame()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        int selectedCharacter =
+            int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
+        //SceneManager.LoadScene("Gameplay");
     }
 }

@@ -14,7 +14,7 @@ public class Monsters : MonoBehaviour
     private void Awake()
     {
         myBody = GetComponent<Rigidbody2D>();
-        speed = 7;
+       
     }
 
     void FixedUpdate()
@@ -22,14 +22,4 @@ public class Monsters : MonoBehaviour
         myBody.velocity = new Vector2(speed, myBody.velocity.y);
     }
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

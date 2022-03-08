@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
     {
         PlayerMoveKeyboard();
         AnimatePlayer();
+        
     }
 
     private void FixedUpdate()
@@ -54,7 +55,7 @@ public class Player : MonoBehaviour
 
     void PlayerMoveKeyboard()
     {
-        movementX = Input.GetAxis("Horizontal");
+        movementX = Input.GetAxisRaw("Horizontal");
        
         transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * moveForce;
     }

@@ -12,6 +12,6 @@ public class GameplayUIController : MonoBehaviour
 
     public void HomeButton()
     {
-        SceneManager.LoadScene("Gameplay");
+        SceneManager.LoadScene("MainMenu");
     }
 }

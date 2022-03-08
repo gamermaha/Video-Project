@@ -9,6 +9,11 @@ public class MainMenuController : MonoBehaviour
     {
         int selectedCharacter =
             int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
-        //SceneManager.LoadScene("Gameplay");
+
+        Warrior.name = "Warior";
+        Warrior.power = 100;
+
+        GameManager.instance.CharIndex = selectedCharacter;
+        SceneManager.LoadScene("Gameplay");
     }
 }

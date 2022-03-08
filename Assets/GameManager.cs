@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,14 +31,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        
+    private void OnDisable()
+    { 
+        SceneManager.sceneLoaded -= OnLevelFinishedLoading;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void onEnable()
     {
-        
+        SceneManager.sceneLoaded += OnLevelFinishedLoading;
     }
+
+    void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Gameplay")
+        {
+            Instantiate(players[CharIndex]);
+        }
+    }
+    
+    
 }

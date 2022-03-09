@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
 
     void PlayerJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             
             isGrounded = false;

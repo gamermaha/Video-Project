@@ -1,16 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuController : MonoBehaviour
+namespace Monster_Chase_Assets.Scripts
 {
-    public void PlayGame()
+    public class MainMenuController : MonoBehaviour
     {
-        int selectedCharacter =
-            int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
+        public void PlayGame()
+        {
+            int selectedCharacter =
+                int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
         
-        GameManager.instance.CharIndex = selectedCharacter;
-        SceneManager.LoadScene("Gameplay");
+            
+            GameManager.instance.CharIndex = selectedCharacter;
+            SceneManager.LoadScene("Gameplay");
+        }
     }
 }

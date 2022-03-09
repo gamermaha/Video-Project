@@ -8,10 +8,7 @@ namespace Monster_Chase_Assets.Scripts
 
         [SerializeField] 
         private GameObject[] monsterReference;
-
-        [SerializeField] 
-        private GameObject myBabyMonsters;
-
+        
         private GameObject spawnedMonster;
         
 
@@ -31,7 +28,7 @@ namespace Monster_Chase_Assets.Scripts
         {
             while (true)
             {
-                yield return new WaitForSeconds(Random.Range(5, 10));
+                yield return new WaitForSeconds(Random.Range(1, 5));
                 randomIndex = Random.Range(0, monsterReference.Length);
                 randomSide = Random.Range(0, 2);
 

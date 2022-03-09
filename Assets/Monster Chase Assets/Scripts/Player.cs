@@ -43,9 +43,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Update is called");
+        
         PlayerMoveKeyboard();
-        Debug.Log("Playermove is called");
+        
         AnimatePlayer();
         PlayerJump();
     }
@@ -64,22 +64,22 @@ public class Player : MonoBehaviour
 
     void AnimatePlayer()
     {
-        Debug.Log("I am here in animate player");
+        
         if (movementX > 0)
         {
-            Debug.Log("I am here in animate player >0");
+            
             anim.SetBool(WALK_ANIMATION, true);
             sr.flipX = false;
         }
         else if (movementX < 0)
         {
-            Debug.Log("I am here in animate player<0");
+            
             anim.SetBool(WALK_ANIMATION,true);
             sr.flipX = true;
         }
         else
         {
-            Debug.Log("I am here in animate player else condition");
+            
             anim.SetBool(WALK_ANIMATION, false);
         }
         
@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
 
     void PlayerJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
             
             isGrounded = false;
@@ -100,6 +100,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag(GROUND_TAG))
         {
+            
             isGrounded = true;
         }
 

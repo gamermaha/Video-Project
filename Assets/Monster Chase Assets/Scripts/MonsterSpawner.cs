@@ -1,51 +1,60 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterSpawner : MonoBehaviour
+namespace Monster_Chase_Assets.Scripts
 {
-
-    [SerializeField] 
-    private GameObject[] monsterReference;
-
-    private GameObject spawnedMonster;
-
-    [SerializeField] 
-    private Transform leftPos, rightPos;
-
-    private int randomIndex;
-    private int randomSide;
-    
-    // Start is called before the first frame update
-    void Start()
+    public class MonsterSpawner : MonoBehaviour
     {
-        StartCoroutine(SpawnMonsters());
-    }
 
-    IEnumerator SpawnMonsters()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(Random.Range(5, 10));
-            randomIndex = Random.Range(0, monsterReference.Length);
-            randomSide = Random.Range(0, 2);
+        [SerializeField] 
+        private GameObject[] monsterReference;
 
-            spawnedMonster = Instantiate(monsterReference[randomIndex]);
+        [SerializeField] 
+        private GameObject myBabyMonsters;
 
-            if (randomSide == 0)
-            {
-                spawnedMonster.transform.position = leftPos.position;
-                spawnedMonster.GetComponent<Monsters>().speed = Random.Range(4, 10);
-            }
-            else
-            {
-                spawnedMonster.transform.position = rightPos.position;
-                spawnedMonster.GetComponent<Monsters>().speed = -Random.Range(4, 10);
-                spawnedMonster.transform.localScale = new Vector3(-1f, 1f, 0f);
-            }
-        }
+        private GameObject spawnedMonster;
         
-    }
+
+        [SerializeField] 
+        private Transform leftPos, rightPos;
+
+        private int randomIndex;
+        private int randomSide;
+    
+        // Start is called before the first frame update
+        void Start()
+        {
+            StartCoroutine(SpawnMonsters());
+        }
+
+        IEnumerator SpawnMonsters()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(Random.Range(5, 10));
+                randomIndex = Random.Range(0, monsterReference.Length);
+                randomSide = Random.Range(0, 2);
+
+                spawnedMonster = Instantiate(monsterReference[randomIndex]);
+                
+                
+
+
+                if (randomSide == 0)
+                {
+                    spawnedMonster.transform.position = leftPos.position;
+                    spawnedMonster.GetComponent<Monsters>().speed = Random.Range(4, 10);
+                }
+                else
+                {
+                    spawnedMonster.transform.position = rightPos.position;
+                    spawnedMonster.GetComponent<Monsters>().speed = -Random.Range(4, 10);
+                    spawnedMonster.transform.localScale = new Vector3(-1f, 1f, 0f);
+                }
+            }
+        
+        }
 
     
+    }
 }

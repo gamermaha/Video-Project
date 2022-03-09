@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2428196163053965161, guid: 7f43a9071bc758b4d830bc27e8631251, type: 3}
+  - {fileID: 1519070240541227197, guid: 79c3fb6de58bb67419cb74885ce9da3e, type: 3}

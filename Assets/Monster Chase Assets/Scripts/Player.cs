@@ -43,7 +43,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Update is called");
         PlayerMoveKeyboard();
+        Debug.Log("Playermove is called");
         AnimatePlayer();
         PlayerJump();
     }
@@ -62,26 +64,30 @@ public class Player : MonoBehaviour
 
     void AnimatePlayer()
     {
+        Debug.Log("I am here in animate player");
         if (movementX > 0)
         {
-            anim.SetBool("Walk", true);
+            Debug.Log("I am here in animate player >0");
+            anim.SetBool(WALK_ANIMATION, true);
             sr.flipX = false;
         }
         else if (movementX < 0)
         {
-            anim.SetBool("Walk", true);
+            Debug.Log("I am here in animate player<0");
+            anim.SetBool(WALK_ANIMATION,true);
             sr.flipX = true;
         }
         else
         {
-            anim.SetBool("Walk", false);
+            Debug.Log("I am here in animate player else condition");
+            anim.SetBool(WALK_ANIMATION, false);
         }
         
     }
 
     void PlayerJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             
             isGrounded = false;

@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Gameplay.unity
+    path: Assets/Monster Chase Assets/Scenes/Gameplay.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Monster Chase Assets/Scenes/MainMenu.unity
     guid: fbfeca31362aa4b429380e84219aa1d1
   m_configObjects: {}

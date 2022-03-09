@@ -57,24 +57,24 @@ public class Player : MonoBehaviour
     {
         movementX = Input.GetAxisRaw("Horizontal");
        
-        transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * moveForce;
+        transform.position += new Vector3(movementX, 0f, 0f) * moveForce * Time.deltaTime ;
     }
 
     void AnimatePlayer()
     {
         if (movementX > 0)
         {
-            anim.SetBool(WALK_ANIMATION, true);
+            anim.SetBool("Walk", true);
             sr.flipX = false;
         }
         else if (movementX < 0)
         {
-            anim.SetBool(WALK_ANIMATION, true);
+            anim.SetBool("Walk", true);
             sr.flipX = true;
         }
         else
         {
-            anim.SetBool(WALK_ANIMATION, false);
+            anim.SetBool("Walk", false);
         }
         
     }

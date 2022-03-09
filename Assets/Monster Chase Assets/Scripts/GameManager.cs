@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     {
         if (scene.name == "Gameplay")
         {
+            Debug.Log("I am going to Game play");
             Instantiate(players[CharIndex]);
         }
     }

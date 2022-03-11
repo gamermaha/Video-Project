@@ -51,9 +51,10 @@ namespace Monster_Chase_Assets.Scripts
         {
             if (scene.name == "Gameplay")
             {
-                buttonClick.Play();
+                
                 if (CharIndex == 0 || CharIndex == 1 )
                 {
+                    buttonClick.Play();
                     _spawnedPlayer = Instantiate(players[CharIndex]).GetComponent<Player>();
                     _spawnedPlayer.PlayerDiedInfo += PlayerDiedListener;
                 }

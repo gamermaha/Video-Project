@@ -10,6 +10,8 @@ public class Fire : MonoBehaviour
     private float speed = 20f;
     
     private Rigidbody2D _rb;
+    [SerializeField] private Player playerPlaying;
+    private bool _checkForFlip;
 
     //private Vector3 _moveDirection;
     
@@ -17,7 +19,26 @@ public class Fire : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _rb.velocity = new Vector2(speed, _rb.velocity.y);
+        
+    }
+
+    void Update()
+    {
+        if (_checkForFlip)
+        {
+            
+            _rb.velocity = new Vector2((-1 * speed), _rb.velocity.y);
+        }
+        else
+        {
+            _rb.velocity = new Vector2(speed, _rb.velocity.y);
+        }
+    }
+
+    public void Shoot(bool flippedCheck)
+    {
+        _checkForFlip = flippedCheck;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -6,8 +6,7 @@ namespace Monster_Chase_Assets.Scripts
     public class GameplayUIController : MonoBehaviour
     {
         [SerializeField] private AudioSource gameOver;
-        [SerializeField] private AudioSource buttonClick;
-        
+
         public void RestartGame()
         {
             

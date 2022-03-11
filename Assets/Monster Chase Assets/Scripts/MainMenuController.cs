@@ -9,13 +9,13 @@ namespace Monster_Chase_Assets.Scripts
         
         public void PlayGame()
         {
-            buttonClick.Play();
+            
             int selectedCharacter =
                 int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
         
             
             GameManager.instance.CharIndex = selectedCharacter;
-            
+            buttonClick.Play();
             SceneManager.LoadScene("Gameplay");
         }
     }

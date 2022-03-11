@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float jumpForce = 11f;
     [SerializeField] private LayerMask _enemyLayerMask = default;
+    
     [SerializeField] private Fire firyfire;
     
     [SerializeField] private AudioSource walkAudio;
@@ -22,8 +23,8 @@ public class Player : MonoBehaviour
 
     private float movementX;
 
+    public bool flippedorNot = false;
     public GameObject killed;
-    public GameObject fired;
 
     private Rigidbody2D myBody;
 
@@ -39,7 +40,7 @@ public class Player : MonoBehaviour
     private string ENEMY_TAG = "Enemy";
 
     //private string FIRE_ANIMATION = "Fire";
-    public bool firing = false;
+    public bool walking = false;
 
     public delegate void PlayerDied(bool isAlive);
 
@@ -74,29 +75,37 @@ public class Player : MonoBehaviour
 
     void PlayerMoveKeyboard()
     {
+        walkAudio.Play();
         movementX = Input.GetAxisRaw("Horizontal");
-
+        
         transform.position += new Vector3(movementX, 0f, 0f) * moveForce * Time.deltaTime;
     }
 
     void AnimatePlayer()
     {
+        
         if (movementX > 0)
         {
             anim.SetBool(WALK_ANIMATION, true);
-            walkAudio.Play();
+            walking = true;
             FlipPlayer(false);
         }
         else if (movementX < 0)
         {
             anim.SetBool(WALK_ANIMATION, true);
-            walkAudio.Play();
+            walking = true;
             FlipPlayer(true);
-            
         }
         else
         {
             anim.SetBool(WALK_ANIMATION, false);
+            walking = false;
+        }
+        if (walking)
+            walkAudio.Play();
+        else
+        {
+            walkAudio.Stop();
         }
     }
 
@@ -105,10 +114,12 @@ public class Player : MonoBehaviour
         if (flip)
         {
             transform.localScale = new Vector3(-1, 1, 1);
+            flippedorNot = true;
         }
         else
         {
             transform.localScale = Vector3.one;
+            flippedorNot = false;
         }
     }
     
@@ -127,18 +138,27 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            var my_fire = Instantiate(firyfire, transform.position,Quaternion.identity);
             //firing = true;
-            Instantiate(firyfire, transform.position, Quaternion.identity);
+            
+            my_fire.Shoot(flippedorNot); 
+            
+            //else if (movementX > 0)
+              //  Instantiate(firyfire, transform.position, transform.rotation);
+            //else
+            //{
+              //  Instantiate(firyfire, transform.position, transform.rotation);
+            //}
             var raycastHit = Physics2D.Raycast(transform.position, (transform.right * transform.localScale.x), 12, _enemyLayerMask);
             fireAudio.Play();
-            Debug.DrawRay(transform.position, (transform.right * transform.localScale.x) * 12, Color.red, 0.25f);
-            Debug.Log("Value of raycast.collider is: " + raycastHit.collider);
+            //Debug.DrawRay(transform.position, (transform.right * transform.localScale.x) * 12, Color.red, 0.25f);
+            //Debug.Log("Value of raycast.collider is: " + raycastHit.collider);
 
             if (raycastHit.collider != null)
             {
                 if (raycastHit.collider.TryGetComponent<Monsters>(out var monsters))
                 {
-                    Debug.Log("Ray has been collided with a monster");
+                    //Debug.Log("Ray has been collided with a monster");
                     monsters.Die();
                     
                     

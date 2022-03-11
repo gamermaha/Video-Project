@@ -9,6 +9,11 @@ namespace Monster_Chase_Assets.Scripts
         [SerializeField]
         private GameObject[] players;
 
+        [SerializeField] 
+        private GameplayUIController uiController;
+
+        private Player _spawnedPlayer;
+
         private int _charIndex;
 
         public int CharIndex
@@ -46,12 +51,21 @@ namespace Monster_Chase_Assets.Scripts
             {
                 if (CharIndex == 0 || CharIndex == 1 )
                 {
-                    Instantiate(players[CharIndex]);
-                    
+                    _spawnedPlayer = Instantiate(players[CharIndex]).GetComponent<Player>();
+                    _spawnedPlayer.PlayerDiedInfo += PlayerDiedListener;
                 }
-                
-                
             }
+        }
+
+        void PlayerDiedListener(bool alive)
+        {
+
+            if (uiController != null)
+            {
+                
+                uiController.GameOver();
+            }
+            _spawnedPlayer.PlayerDiedInfo -= PlayerDiedListener;
         }
     
     

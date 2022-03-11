@@ -224,8 +224,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62606550}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -90, y: 0, z: 0}
+  m_LocalScale: {x: 20, y: 20, z: 1}
   m_Children: []
   m_Father: {fileID: 363862971}
   m_RootOrder: 0
@@ -731,6 +731,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &357043980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 357043981}
+  m_Layer: 0
+  m_Name: Elevated
+  m_TagString: Untagged
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &357043981
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357043980}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 103, y: 2, z: 0}
+  m_LocalScale: {x: 20, y: 20, z: 1}
+  m_Children: []
+  m_Father: {fileID: 363862971}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &363862969
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,8 +794,10 @@ MonoBehaviour:
   - {fileID: 2269525637128600249, guid: 2688fc863bd3a0647afd485fb163705b, type: 3}
   - {fileID: 3634315122101724892, guid: f41995b9d4d79864597e42ccd9794be8, type: 3}
   - {fileID: 8571411191129279951, guid: e786e740edc1119429a411886bccec74, type: 3}
+  - {fileID: 8717138188726692122, guid: dd210aba647f3a94b8b772b1af238dd2, type: 3}
   leftPos: {fileID: 62606551}
   rightPos: {fileID: 1516946158}
+  elevatedGhostPos: {fileID: 357043981}
 --- !u!4 &363862971
 Transform:
   m_ObjectHideFlags: 0
@@ -779,6 +811,7 @@ Transform:
   m_Children:
   - {fileID: 62606551}
   - {fileID: 1516946158}
+  - {fileID: 357043981}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3909,9 +3942,9 @@ GameObject:
   - component: {fileID: 1517999356}
   - component: {fileID: 1517999355}
   - component: {fileID: 1517999354}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3985,7 +4018,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: -1961492633
+  m_SortingLayerID: 742343641
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1517999358

@@ -1,17 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameplayUIController : MonoBehaviour
+namespace Monster_Chase_Assets.Scripts
 {
-    public void RestartGame()
+    public class GameplayUIController : MonoBehaviour
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+        public void RestartGame()
+        {
+            SceneManager.LoadScene("Gameplay");
+            
+        }
 
-    public void HomeButton()
-    {
-        SceneManager.LoadScene("MainMenu");
+        public void HomeButton()
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+
+        public void GameOver()
+        {
+            
+            SceneManager.LoadScene("GameOver");
+        }
+
+        
+    
     }
 }

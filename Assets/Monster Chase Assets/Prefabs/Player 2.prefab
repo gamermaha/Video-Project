@@ -156,3 +156,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveForce: 10
   jumpForce: 11
+  _enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  firyfire: {fileID: 6229027567833392641, guid: 28a6f1773a3bd77458218cf4ce0c62e6,
+    type: 3}
+  killed: {fileID: 435977581804780568, guid: 13f1c430a4cd07b4789be0c11da7bbf5, type: 3}
+  fired: {fileID: 6229027567833392670, guid: 28a6f1773a3bd77458218cf4ce0c62e6, type: 3}
+  firing: 0

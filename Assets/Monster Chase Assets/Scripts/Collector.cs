@@ -8,7 +8,6 @@ namespace Monster_Chase_Assets.Scripts
         {
             if (collision.CompareTag("Enemy") || collision.CompareTag("Player"))
             {
-                Debug.Log(collision.gameObject + "have collided aaaaa");
                 Destroy(collision.gameObject);
             }
         }

@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Monster Chase Assets/Scenes/MainMenu.unity
     guid: fbfeca31362aa4b429380e84219aa1d1
+  - enabled: 1
+    path: Assets/Monster Chase Assets/Scenes/GameOver.unity
+    guid: b25bd7623f390ab47936ae25eda0719c
   m_configObjects: {}

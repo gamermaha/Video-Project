@@ -13,7 +13,7 @@ namespace Monster_Chase_Assets.Scripts
         
 
         [SerializeField] 
-        private Transform leftPos, rightPos;
+        private Transform leftPos, rightPos, elevatedGhostPos;
 
         private int randomIndex;
         private int randomSide;
@@ -28,7 +28,7 @@ namespace Monster_Chase_Assets.Scripts
         {
             while (true)
             {
-                yield return new WaitForSeconds(Random.Range(1, 5));
+                yield return new WaitForSeconds(Random.Range(1, 2));
                 randomIndex = Random.Range(0, monsterReference.Length);
                 randomSide = Random.Range(0, 2);
 
@@ -39,14 +39,32 @@ namespace Monster_Chase_Assets.Scripts
 
                 if (randomSide == 0)
                 {
-                    spawnedMonster.transform.position = leftPos.position;
-                    spawnedMonster.GetComponent<Monsters>().speed = Random.Range(4, 10);
+                    if (randomIndex == 3)
+                    {
+                        spawnedMonster.transform.position = elevatedGhostPos.position;
+                        spawnedMonster.GetComponent<Monsters>().speed = Random.Range(4, 10);
+                    }
+                    else
+                    {
+                        spawnedMonster.transform.position = leftPos.position;
+                        spawnedMonster.GetComponent<Monsters>().speed = Random.Range(4, 10);
+                    }
                 }
                 else
                 {
-                    spawnedMonster.transform.position = rightPos.position;
-                    spawnedMonster.GetComponent<Monsters>().speed = -Random.Range(4, 10);
-                    spawnedMonster.transform.localScale = new Vector3(-1f, 1f, 0f);
+                    if (randomIndex == 3)
+                    {
+                        spawnedMonster.transform.position = elevatedGhostPos.position;
+                        spawnedMonster.GetComponent<Monsters>().speed = -Random.Range(4, 10);
+                        spawnedMonster.transform.localScale = new Vector3(-1f, 1f, 0f);
+                    }
+                    else
+                    {
+                        spawnedMonster.transform.position = rightPos.position;
+                        spawnedMonster.GetComponent<Monsters>().speed = -Random.Range(4, 10);
+                        spawnedMonster.transform.localScale = new Vector3(-1f, 1f, 0f);
+                    }
+                    
                 }
             }
         

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 69091851520485441}
   - component: {fileID: 6152334210554528955}
   - component: {fileID: 8424419694157181013}
-  - component: {fileID: 1845562503325668271}
   - component: {fileID: 2118529539}
+  - component: {fileID: 1845562503325668271}
   m_Layer: 8
   m_Name: RedZ
   m_TagString: Enemy
@@ -143,19 +143,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1845562503325668271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8571411191129279951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3e1bf183a27027469452822ac67a7d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
 --- !u!70 &2118529539
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -172,3 +159,17 @@ CapsuleCollider2D:
   m_Offset: {x: -0.22002196, y: 0}
   m_Size: {x: 0.84995604, y: 2.11}
   m_Direction: 0
+--- !u!114 &1845562503325668271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8571411191129279951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e1bf183a27027469452822ac67a7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  killed: {fileID: 435977581804780568, guid: 13f1c430a4cd07b4789be0c11da7bbf5, type: 3}

@@ -1,25 +1,31 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Monsters : MonoBehaviour
+namespace Monster_Chase_Assets.Scripts
 {
-    // Start is called before the first frame update
-    [HideInInspector] 
-    public float speed;
-
-    private Rigidbody2D myBody;
-
-    private void Awake()
+    public class Monsters : MonoBehaviour
     {
-        myBody = GetComponent<Rigidbody2D>();
-       
-    }
+        // Start is called before the first frame update
+        [SerializeField] public float speed;
+        private Rigidbody2D myBody;
 
-    void FixedUpdate()
-    {
-        myBody.velocity = new Vector2(speed, myBody.velocity.y);
-    }
+        //private string FIRE_TAG = "Fire";
+        public GameObject killed;
 
+
+        private void Awake()
+        {
+            myBody = GetComponent<Rigidbody2D>();
+        }
+
+        void FixedUpdate()
+        {
+            myBody.velocity = new Vector2(speed, myBody.velocity.y);
+        }
+
+        public void Die()
+        {
+            var deathAnim = Instantiate(killed, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+        }
+    }
 }

@@ -15,6 +15,10 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask _enemyLayerMask = default;
     [SerializeField] private Fire firyfire;
     
+    [SerializeField] private AudioSource walkAudio;
+    [SerializeField] private AudioSource jumpAudio;
+    [SerializeField] private AudioSource fireAudio;
+
 
     private float movementX;
 
@@ -80,11 +84,13 @@ public class Player : MonoBehaviour
         if (movementX > 0)
         {
             anim.SetBool(WALK_ANIMATION, true);
+            walkAudio.Play();
             FlipPlayer(false);
         }
         else if (movementX < 0)
         {
             anim.SetBool(WALK_ANIMATION, true);
+            walkAudio.Play();
             FlipPlayer(true);
             
         }
@@ -94,7 +100,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void FlipPlayer(bool flip)
+    public void FlipPlayer(bool flip)
     {
         if (flip)
         {
@@ -113,6 +119,7 @@ public class Player : MonoBehaviour
         {
             isGrounded = false;
             myBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            jumpAudio.Play();
         }
     }
 
@@ -123,7 +130,7 @@ public class Player : MonoBehaviour
             //firing = true;
             Instantiate(firyfire, transform.position, Quaternion.identity);
             var raycastHit = Physics2D.Raycast(transform.position, (transform.right * transform.localScale.x), 12, _enemyLayerMask);
-            
+            fireAudio.Play();
             Debug.DrawRay(transform.position, (transform.right * transform.localScale.x) * 12, Color.red, 0.25f);
             Debug.Log("Value of raycast.collider is: " + raycastHit.collider);
 
@@ -148,8 +155,11 @@ public class Player : MonoBehaviour
     void ExecuteDeath()
     {
         if (PlayerDiedInfo != null)
-        {
+        { 
+            
             PlayerDiedInfo(false);
+            
+            
         }
     }
 
@@ -162,6 +172,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag(ENEMY_TAG))
         {
+            
             GameObject animation = Instantiate(killed, transform.position, Quaternion.identity);
             ExecuteDeath();
             Destroy(gameObject);
@@ -172,7 +183,8 @@ public class Player : MonoBehaviour
     {
         if (collision.CompareTag(ENEMY_TAG))
         {
-            GameObject animation = Instantiate(killed, transform.position, Quaternion.identity);
+            //deathAudio.Play();
+            GameObject deathAnimation = Instantiate(killed, transform.position, Quaternion.identity);
             ExecuteDeath();
             Destroy(gameObject);
         }

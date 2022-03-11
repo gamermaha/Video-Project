@@ -5,20 +5,26 @@ namespace Monster_Chase_Assets.Scripts
 {
     public class GameplayUIController : MonoBehaviour
     {
+        [SerializeField] private AudioSource gameOver;
+        [SerializeField] private AudioSource buttonClick;
+        
         public void RestartGame()
         {
+            
             SceneManager.LoadScene("Gameplay");
+            
             
         }
 
         public void HomeButton()
         {
             SceneManager.LoadScene("MainMenu");
+            
         }
 
         public void GameOver()
         {
-            
+            gameOver.Play();
             SceneManager.LoadScene("GameOver");
         }
 

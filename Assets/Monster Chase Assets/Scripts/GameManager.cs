@@ -11,6 +11,7 @@ namespace Monster_Chase_Assets.Scripts
 
         [SerializeField] 
         private GameplayUIController uiController;
+        [SerializeField] private AudioSource buttonClick;
 
         private Player _spawnedPlayer;
 
@@ -26,6 +27,7 @@ namespace Monster_Chase_Assets.Scripts
         {
             if (instance == null)
             {
+                
                 instance = this;
                 DontDestroyOnLoad(gameObject);
             }
@@ -49,6 +51,7 @@ namespace Monster_Chase_Assets.Scripts
         {
             if (scene.name == "Gameplay")
             {
+                buttonClick.Play();
                 if (CharIndex == 0 || CharIndex == 1 )
                 {
                     _spawnedPlayer = Instantiate(players[CharIndex]).GetComponent<Player>();

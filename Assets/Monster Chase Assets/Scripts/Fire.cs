@@ -9,7 +9,6 @@ public class Fire : MonoBehaviour
     [SerializeField] 
     private float speed = 20f;
     
-
     private Rigidbody2D _rb;
 
     //private Vector3 _moveDirection;

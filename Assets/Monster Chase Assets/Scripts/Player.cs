@@ -126,15 +126,7 @@ public class Player : MonoBehaviour
         {
             var my_fire = Instantiate(firyfire, transform.position,Quaternion.identity);
             my_fire.Shoot(isFlipped);
-            
-            //var raycastHit = Physics2D.Raycast(transform.position, (transform.right * transform.localScale.x), 12, _enemyLayerMask);
             fireAudio.Play();
-
-            //if (raycastHit.collider != null)
-            //{
-              //  if (raycastHit.collider.TryGetComponent<Monsters>(out var monsters))
-                //    monsters.Die();
-            //}
         }
     }
     void ExecuteDeath()

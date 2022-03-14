@@ -10,33 +10,18 @@ public class Fire : MonoBehaviour
     
     private Rigidbody2D _rb;
     private bool _checkForFlip;
-    //public int _bulletsInMagazine;
 
 
-    void Start()
+    void Start() => _rb = GetComponent<Rigidbody2D>();
+
+        void Update()
     {
-        
-        _rb = GetComponent<Rigidbody2D>();
-        
-    }
-
-    void Update()
-    {
-        if (_checkForFlip)
-        {
+        if (_checkForFlip) 
             _rb.velocity = new Vector2((-1 * speed), _rb.velocity.y);
-        }
-        else
-        {
+        else 
             _rb.velocity = new Vector2(speed, _rb.velocity.y);
-        }
-    }
-
-    public void Shoot(bool flippedCheck)
-    {
-        _checkForFlip = flippedCheck;
-    }
-
+        
+    } 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent<Monsters>(out var monsters))
@@ -45,4 +30,6 @@ public class Fire : MonoBehaviour
             Destroy(gameObject); 
         }
     }
+    public void Shoot(bool flippedCheck) => _checkForFlip = flippedCheck;
+    
 }

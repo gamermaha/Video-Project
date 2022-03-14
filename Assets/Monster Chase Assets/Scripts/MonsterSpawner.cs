@@ -8,7 +8,10 @@ namespace Monster_Chase_Assets.Scripts
         ////// Variables for Inspector Window //////
         
         // GameObjects to be imported
+        [Header("Insert your Monsters here")]
         [SerializeField] private GameObject[] monsterReference;
+        
+        [Header("Positions for Monster Spawner")]
         [SerializeField] private Transform leftPos, rightPos, elevatedGhostPos;
         
         
@@ -18,10 +21,8 @@ namespace Monster_Chase_Assets.Scripts
         private int randomIndex;
         private int randomSide;
         
-        void Start()
-        {
-            StartCoroutine(SpawnMonsters());
-        }
+        void Start() => StartCoroutine(SpawnMonsters());
+        
 
         IEnumerator SpawnMonsters()
         {

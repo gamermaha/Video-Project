@@ -9,28 +9,33 @@ using static UnityEngine.Vector2;
 
 public class Player : MonoBehaviour
 {
+    
+    public delegate void PlayerDied(bool isAlive); 
+    public event PlayerDied PlayerDiedInfo;
     ////// Variables for Inspector Window //////
     
     // Variables for the Player
+    [Header("Movement Settings")]
     [SerializeField] private float moveForce;
     [SerializeField] private float jumpForce;
     
     // GameObjects to be imported
-    [SerializeField] private LayerMask _enemyLayerMask = default;
-    [SerializeField] private Fire firyfire;
+    [Header("GameObjects Imported")]
+    public GameObject killed;
     [SerializeField] private Weapon myWeapon;
     
     
+    
     // Audio Sources 
+    [Header("Audio Sources Imported")]
     [SerializeField] private AudioSource walkAudio;
     [SerializeField] private AudioSource jumpAudio;
-    [SerializeField] private AudioSource fireAudio;
-
+ 
     
     ///// Variables for Script////////
     
     private float movementX;
-    public GameObject killed;
+    
     private Rigidbody2D myBody;
     private SpriteRenderer sr;
     private Animator anim;
@@ -46,18 +51,12 @@ public class Player : MonoBehaviour
     private string GROUND_TAG = "Ground";
     private string ENEMY_TAG = "Enemy";
     
-    
-    //Death Execution
-    public delegate void PlayerDied(bool isAlive);
-    public event PlayerDied PlayerDiedInfo;
-
     private void Awake()
     {
         myBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
     }
-    
     void Update()
     {
         PlayerMoveKeyboard();
@@ -65,6 +64,8 @@ public class Player : MonoBehaviour
         PlayerJump();
         PlayerFire();
     }
+    
+    
     void PlayerMoveKeyboard()
     {
         walkAudio.Play();
@@ -99,22 +100,6 @@ public class Player : MonoBehaviour
             walkAudio.Stop();
         }
     }
-
-    public void FlipPlayer(bool flip)
-    {
-        if (flip)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-            isFlipped = true;
-        }
-        else
-        {
-            transform.localScale = Vector3.one;
-            isFlipped = false;
-        }
-    }
-    
-
     void PlayerJump()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
@@ -132,19 +117,6 @@ public class Player : MonoBehaviour
             myWeapon.FireBullet();
         }
     }
-    void ExecuteDeath()
-    {
-        if (PlayerDiedInfo != null)
-            PlayerDiedInfo(false);
-    }
-
-    void OnDeath()
-    {
-        GameObject animation = Instantiate(killed, transform.position, Quaternion.identity);
-        ExecuteDeath();
-        Destroy(gameObject);
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag(GROUND_TAG))
@@ -158,5 +130,29 @@ public class Player : MonoBehaviour
     {
         if (collision.CompareTag(ENEMY_TAG))
             OnDeath();
+    }
+    void OnDeath()
+    {
+        GameObject animation = Instantiate(killed, transform.position, Quaternion.identity);
+        ExecuteDeath();
+        Destroy(gameObject);
+    }
+    void ExecuteDeath()
+    {
+        if (PlayerDiedInfo != null)
+            PlayerDiedInfo(false);
+    }
+    public void FlipPlayer(bool flip)
+    {
+        if (flip)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+            isFlipped = true;
+        }
+        else
+        {
+            transform.localScale = Vector3.one;
+            isFlipped = false;
+        }
     }
 }

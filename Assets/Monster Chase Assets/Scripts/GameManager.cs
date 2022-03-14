@@ -5,7 +5,7 @@ namespace Monster_Chase_Assets.Scripts
 {
     public class GameManager : MonoBehaviour
     {
-        
+        [Header("GameObjects Imported")]
         [SerializeField] private GameObject[] players;
         [SerializeField] private GameplayUIController uiController;
         [SerializeField] private AudioSource buttonClick;
@@ -19,7 +19,6 @@ namespace Monster_Chase_Assets.Scripts
             get { return _charIndex; }
             set { _charIndex = value;  }
         }
-
         private void Awake()
         {
             if (instance == null)
@@ -28,26 +27,22 @@ namespace Monster_Chase_Assets.Scripts
                 DontDestroyOnLoad(gameObject);
             }
             else
-            {
                 Destroy(gameObject);
-            }
+            
         }
-
-        private void OnDisable()
-        { 
-            SceneManager.sceneLoaded -= OnLevelFinishedLoading;
-        }
-
         private void OnEnable()
         {
             SceneManager.sceneLoaded += OnLevelFinishedLoading;
+        }
+        private void OnDisable()
+        { 
+            SceneManager.sceneLoaded -= OnLevelFinishedLoading;
         }
 
         void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
         {
             if (scene.name == "Gameplay")
             {
-                
                 if (CharIndex == 0 || CharIndex == 1 )
                 {
                     buttonClick.Play();
@@ -56,17 +51,12 @@ namespace Monster_Chase_Assets.Scripts
                 }
             }
         }
-
         void PlayerDiedListener(bool alive)
         {
-
             if (uiController != null)
-            {
                 uiController.GameOver();
-            }
+            
             _spawnedPlayer.PlayerDiedInfo -= PlayerDiedListener;
         }
-    
-    
     }
 }

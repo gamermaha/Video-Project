@@ -5,16 +5,13 @@ using UnityEngine;
 public class CameraFollower : MonoBehaviour
 {
     
-    private Transform player;
-    private Vector3 tempPos;
 
     [SerializeField] 
     private float minX, maxX;
-    void Start()
-    {
-        player = GameObject.FindWithTag("Player").transform;
-        
-    }
+    
+    private Transform player;
+    private Vector3 tempPos;
+    void Start() => player = GameObject.FindWithTag("Player").transform;
     
     void LateUpdate()
     {

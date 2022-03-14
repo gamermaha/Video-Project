@@ -7,14 +7,18 @@ namespace Monster_Chase_Assets.Scripts
 {
     public class Weapon : MonoBehaviour
     {
+        [Header("Gun Dynamics")]
         [SerializeField] private int magazineSize;
         [SerializeField] private float waitTimeReload;
-        private int _bulletsInMagazine;
-        private bool canShoot = true;
-        private bool playerFlipped;
+        
+        [Header("GameObjects Imported")]
         [SerializeField] private Fire fireReference;
         [SerializeField] private AudioSource fireAudio;
         
+        //Booleans
+        private int _bulletsInMagazine;
+        private bool canShoot = true;
+        private bool playerFlipped;
         private Fire _spawnedFire;
         
 
@@ -22,12 +26,6 @@ namespace Monster_Chase_Assets.Scripts
         {
             _bulletsInMagazine = magazineSize;
         }
-
-        public void PlayerDirection(bool playerdir)
-        {
-            playerFlipped = playerdir;
-        }
-
         public void FireBullet()
         {
             // 0: Just Fallback If Shooting Is Not Allowed
@@ -47,16 +45,15 @@ namespace Monster_Chase_Assets.Scripts
             SetWeaponShooting(false);
             StartCoroutine(ReloadWeapon());
         }
-
-
         private IEnumerator ReloadWeapon()
         {
             yield return new WaitForSeconds(waitTimeReload);
             _bulletsInMagazine = magazineSize;
             SetWeaponShooting(true);
         }
-        
         private void SetWeaponShooting(bool canShoot)
             => this.canShoot = canShoot;
+        public void PlayerDirection(bool playerdir)
+            => playerFlipped = playerdir;
     }
 }

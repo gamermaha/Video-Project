@@ -7,15 +7,10 @@ namespace Monster_Chase_Assets.Scripts
     {
         [SerializeField] private AudioSource gameOver;
 
-        public void RestartGame()
-        {
-            SceneManager.LoadScene("Gameplay");
-        }
+        public void RestartGame() => SceneManager.LoadScene("Gameplay");
 
-        public void HomeButton()
-        {
-            SceneManager.LoadScene("MainMenu");
-        }
+        public void HomeButton() => SceneManager.LoadScene("MainMenu");
+        
 
         public void GameOver()
         {

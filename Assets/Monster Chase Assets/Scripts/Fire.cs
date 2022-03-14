@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    [SerializeField] private float speed = 20f;
+    [SerializeField] private float speed = 30f;
     
     private Rigidbody2D _rb;
     [SerializeField] private Player playerPlaying;
@@ -40,7 +40,10 @@ public class Fire : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
-            Destroy(gameObject);
+        if (collision.TryGetComponent<Monsters>(out var monsters))
+        {
+            monsters.Die();
+            Destroy(gameObject); 
+        }
     }
 }

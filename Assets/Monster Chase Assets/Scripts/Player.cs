@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     
     //Boolean Variables
     public bool walking = false;
-    public bool flippedorNot = false;
+    public bool isFlipped = false;
     private bool isGrounded;
     
     //Tags
@@ -101,12 +101,12 @@ public class Player : MonoBehaviour
         if (flip)
         {
             transform.localScale = new Vector3(-1, 1, 1);
-            flippedorNot = true;
+            isFlipped = true;
         }
         else
         {
             transform.localScale = Vector3.one;
-            flippedorNot = false;
+            isFlipped = false;
         }
     }
     
@@ -125,16 +125,16 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             var my_fire = Instantiate(firyfire, transform.position,Quaternion.identity);
-            my_fire.Shoot(flippedorNot);
+            my_fire.Shoot(isFlipped);
             
-            var raycastHit = Physics2D.Raycast(transform.position, (transform.right * transform.localScale.x), 12, _enemyLayerMask);
+            //var raycastHit = Physics2D.Raycast(transform.position, (transform.right * transform.localScale.x), 12, _enemyLayerMask);
             fireAudio.Play();
 
-            if (raycastHit.collider != null)
-            {
-                if (raycastHit.collider.TryGetComponent<Monsters>(out var monsters))
-                    monsters.Die();
-            }
+            //if (raycastHit.collider != null)
+            //{
+              //  if (raycastHit.collider.TryGetComponent<Monsters>(out var monsters))
+                //    monsters.Die();
+            //}
         }
     }
     void ExecuteDeath()

@@ -9,14 +9,13 @@ public class Fire : MonoBehaviour
     [SerializeField] private float speed = 30f;
     
     private Rigidbody2D _rb;
-    [SerializeField] private Player playerPlaying;
     private bool _checkForFlip;
+    //public int _bulletsInMagazine;
 
-    //private Vector3 _moveDirection;
-    
-    
+
     void Start()
     {
+        
         _rb = GetComponent<Rigidbody2D>();
         
     }

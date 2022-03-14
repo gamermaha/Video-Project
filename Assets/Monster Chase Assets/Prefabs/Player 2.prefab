@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5298319334172564586}
   - component: {fileID: 1013280925805792856}
   - component: {fileID: 7818274023384897372}
+  - component: {fileID: 2000142550655005159}
   m_Layer: 0
   m_Name: Player 2
   m_TagString: Player
@@ -164,12 +165,13 @@ MonoBehaviour:
     m_Bits: 256
   firyfire: {fileID: 6229027567833392641, guid: 28a6f1773a3bd77458218cf4ce0c62e6,
     type: 3}
+  myWeapon: {fileID: 2000142550655005159}
   walkAudio: {fileID: 5298319334172564586}
   jumpAudio: {fileID: 1013280925805792856}
   fireAudio: {fileID: 7818274023384897372}
-  flippedorNot: 0
   killed: {fileID: 435977581804780568, guid: 13f1c430a4cd07b4789be0c11da7bbf5, type: 3}
   walking: 0
+  isFlipped: 0
 --- !u!82 &5298319334172564586
 AudioSource:
   m_ObjectHideFlags: 0
@@ -458,3 +460,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2000142550655005159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519070240541227197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa880c10ac379c547bbc9bf6bd6c0e98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magazineSize: 3
+  waitTimeReload: 0
+  fireReference: {fileID: 6229027567833392641, guid: 28a6f1773a3bd77458218cf4ce0c62e6,
+    type: 3}
+  fireAudio: {fileID: 7818274023384897372}

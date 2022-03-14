@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     // GameObjects to be imported
     [SerializeField] private LayerMask _enemyLayerMask = default;
     [SerializeField] private Fire firyfire;
+    [SerializeField] private Weapon myWeapon;
+    
     
     // Audio Sources 
     [SerializeField] private AudioSource walkAudio;
@@ -32,6 +34,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D myBody;
     private SpriteRenderer sr;
     private Animator anim;
+   
     
     //Boolean Variables
     public bool walking = false;
@@ -54,6 +57,7 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
     }
+    
     void Update()
     {
         PlayerMoveKeyboard();
@@ -120,13 +124,12 @@ public class Player : MonoBehaviour
             jumpAudio.Play();
         }
     }
-    private void PlayerFire()
+    void PlayerFire()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            var my_fire = Instantiate(firyfire, transform.position,Quaternion.identity);
-            my_fire.Shoot(isFlipped);
-            fireAudio.Play();
+            myWeapon.PlayerDirection(isFlipped);
+            myWeapon.FireBullet();
         }
     }
     void ExecuteDeath()

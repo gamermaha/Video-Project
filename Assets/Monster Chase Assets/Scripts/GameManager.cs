@@ -5,16 +5,13 @@ namespace Monster_Chase_Assets.Scripts
 {
     public class GameManager : MonoBehaviour
     {
-        public static GameManager instance;
-        [SerializeField]
-        private GameObject[] players;
-
-        [SerializeField] 
-        private GameplayUIController uiController;
+        
+        [SerializeField] private GameObject[] players;
+        [SerializeField] private GameplayUIController uiController;
         [SerializeField] private AudioSource buttonClick;
 
+        public static GameManager instance;
         private Player _spawnedPlayer;
-
         private int _charIndex;
 
         public int CharIndex
@@ -27,7 +24,6 @@ namespace Monster_Chase_Assets.Scripts
         {
             if (instance == null)
             {
-                
                 instance = this;
                 DontDestroyOnLoad(gameObject);
             }
@@ -66,7 +62,6 @@ namespace Monster_Chase_Assets.Scripts
 
             if (uiController != null)
             {
-                
                 uiController.GameOver();
             }
             _spawnedPlayer.PlayerDiedInfo -= PlayerDiedListener;

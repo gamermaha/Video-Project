@@ -9,58 +9,51 @@ using static UnityEngine.Vector2;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float moveForce = 10f;
-
-    [SerializeField] private float jumpForce = 11f;
-    [SerializeField] private LayerMask _enemyLayerMask = default;
+    ////// Variables for Inspector Window //////
     
+    // Variables for the Player
+    [SerializeField] private float moveForce;
+    [SerializeField] private float jumpForce;
+    
+    // GameObjects to be imported
+    [SerializeField] private LayerMask _enemyLayerMask = default;
     [SerializeField] private Fire firyfire;
     
+    // Audio Sources 
     [SerializeField] private AudioSource walkAudio;
     [SerializeField] private AudioSource jumpAudio;
     [SerializeField] private AudioSource fireAudio;
 
-
+    
+    ///// Variables for Script////////
+    
     private float movementX;
-
-    public bool flippedorNot = false;
     public GameObject killed;
-
     private Rigidbody2D myBody;
-
     private SpriteRenderer sr;
-
     private Animator anim;
-    private string WALK_ANIMATION = "Walk";
-
-
-    private bool isGrounded;
-    private string GROUND_TAG = "Ground";
-
-    private string ENEMY_TAG = "Enemy";
-
-    //private string FIRE_ANIMATION = "Fire";
+    
+    //Boolean Variables
     public bool walking = false;
-
+    public bool flippedorNot = false;
+    private bool isGrounded;
+    
+    //Tags
+    private string WALK_ANIMATION = "Walk";
+    private string GROUND_TAG = "Ground";
+    private string ENEMY_TAG = "Enemy";
+    
+    
+    //Death Execution
     public delegate void PlayerDied(bool isAlive);
-
     public event PlayerDied PlayerDiedInfo;
 
     private void Awake()
     {
         myBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
         sr = GetComponent<SpriteRenderer>();
     }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
     void Update()
     {
         PlayerMoveKeyboard();
@@ -68,16 +61,10 @@ public class Player : MonoBehaviour
         PlayerJump();
         PlayerFire();
     }
-
-    private void FixedUpdate()
-    {
-    }
-
     void PlayerMoveKeyboard()
     {
         walkAudio.Play();
         movementX = Input.GetAxisRaw("Horizontal");
-        
         transform.position += new Vector3(movementX, 0f, 0f) * moveForce * Time.deltaTime;
     }
 
@@ -133,80 +120,48 @@ public class Player : MonoBehaviour
             jumpAudio.Play();
         }
     }
-
     private void PlayerFire()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             var my_fire = Instantiate(firyfire, transform.position,Quaternion.identity);
-            //firing = true;
+            my_fire.Shoot(flippedorNot);
             
-            my_fire.Shoot(flippedorNot); 
-            
-            //else if (movementX > 0)
-              //  Instantiate(firyfire, transform.position, transform.rotation);
-            //else
-            //{
-              //  Instantiate(firyfire, transform.position, transform.rotation);
-            //}
             var raycastHit = Physics2D.Raycast(transform.position, (transform.right * transform.localScale.x), 12, _enemyLayerMask);
             fireAudio.Play();
-            //Debug.DrawRay(transform.position, (transform.right * transform.localScale.x) * 12, Color.red, 0.25f);
-            //Debug.Log("Value of raycast.collider is: " + raycastHit.collider);
 
             if (raycastHit.collider != null)
             {
                 if (raycastHit.collider.TryGetComponent<Monsters>(out var monsters))
-                {
-                    //Debug.Log("Ray has been collided with a monster");
                     monsters.Die();
-                    
-                    
-                }
             }
-
-
-            //GameObject fire_animation =  Instantiate(fired);
-            // , transform.position, Quaternion.identity
-            //anim.SetBool(FIRE_ANIMATION, true);
         }
     }
-
     void ExecuteDeath()
     {
         if (PlayerDiedInfo != null)
-        { 
-            
             PlayerDiedInfo(false);
-            
-            
-        }
+    }
+
+    void OnDeath()
+    {
+        GameObject animation = Instantiate(killed, transform.position, Quaternion.identity);
+        ExecuteDeath();
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag(GROUND_TAG))
-        {
             isGrounded = true;
-        }
-
+        
         if (collision.gameObject.CompareTag(ENEMY_TAG))
-        {
-            
-            GameObject animation = Instantiate(killed, transform.position, Quaternion.identity);
-            ExecuteDeath();
-            Destroy(gameObject);
-        }
+            OnDeath();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag(ENEMY_TAG))
-        {
-            //deathAudio.Play();
-            GameObject deathAnimation = Instantiate(killed, transform.position, Quaternion.identity);
-            ExecuteDeath();
-            Destroy(gameObject);
-        }
+            OnDeath();
     }
 }

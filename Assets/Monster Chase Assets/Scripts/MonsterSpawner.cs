@@ -5,20 +5,19 @@ namespace Monster_Chase_Assets.Scripts
 {
     public class MonsterSpawner : MonoBehaviour
     {
-
-        [SerializeField] 
-        private GameObject[] monsterReference;
+        ////// Variables for Inspector Window //////
+        
+        // GameObjects to be imported
+        [SerializeField] private GameObject[] monsterReference;
+        [SerializeField] private Transform leftPos, rightPos, elevatedGhostPos;
+        
+        
+        ///// Variables for Script////////
         
         private GameObject spawnedMonster;
-        
-
-        [SerializeField] 
-        private Transform leftPos, rightPos, elevatedGhostPos;
-
         private int randomIndex;
         private int randomSide;
-    
-        // Start is called before the first frame update
+        
         void Start()
         {
             StartCoroutine(SpawnMonsters());
@@ -34,9 +33,6 @@ namespace Monster_Chase_Assets.Scripts
 
                 spawnedMonster = Instantiate(monsterReference[randomIndex]);
                 
-                
-
-
                 if (randomSide == 0)
                 {
                     if (randomIndex == 3)
@@ -69,7 +65,5 @@ namespace Monster_Chase_Assets.Scripts
             }
         
         }
-
-    
     }
 }

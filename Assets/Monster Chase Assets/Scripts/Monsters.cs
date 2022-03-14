@@ -4,13 +4,10 @@ namespace Monster_Chase_Assets.Scripts
 {
     public class Monsters : MonoBehaviour
     {
-        // Start is called before the first frame update
         [SerializeField] public float speed;
+        
         private Rigidbody2D myBody;
-
-        //private string FIRE_TAG = "Fire";
         public GameObject killed;
-
 
         private void Awake()
         {

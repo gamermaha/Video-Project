@@ -6,8 +6,7 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    [SerializeField] 
-    private float speed = 20f;
+    [SerializeField] private float speed = 20f;
     
     private Rigidbody2D _rb;
     [SerializeField] private Player playerPlaying;
@@ -26,7 +25,6 @@ public class Fire : MonoBehaviour
     {
         if (_checkForFlip)
         {
-            
             _rb.velocity = new Vector2((-1 * speed), _rb.velocity.y);
         }
         else
@@ -38,7 +36,6 @@ public class Fire : MonoBehaviour
     public void Shoot(bool flippedCheck)
     {
         _checkForFlip = flippedCheck;
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

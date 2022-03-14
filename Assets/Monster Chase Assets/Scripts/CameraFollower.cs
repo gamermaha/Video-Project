@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraFollower : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
     private Transform player;
     private Vector3 tempPos;
 
@@ -15,8 +15,7 @@ public class CameraFollower : MonoBehaviour
         player = GameObject.FindWithTag("Player").transform;
         
     }
-
-    // Update is called once per frame
+    
     void LateUpdate()
     {
         if (!player)

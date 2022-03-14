@@ -9,16 +9,12 @@ namespace Monster_Chase_Assets.Scripts
 
         public void RestartGame()
         {
-            
             SceneManager.LoadScene("Gameplay");
-            
-            
         }
 
         public void HomeButton()
         {
             SceneManager.LoadScene("MainMenu");
-            
         }
 
         public void GameOver()

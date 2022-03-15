@@ -19,14 +19,12 @@ namespace Monster_Chase_Assets.Scripts
         {
             player = GameObject.FindWithTag("Player").transform;
             horzExtent = Camera.main.orthographicSize * Screen.width / Screen.height;
+            
+            rightCollider.transform.position = new Vector3(transform.position.x + horzExtent + 1.5f, transform.position.y);
+            leftCollider.transform.position = new Vector3(transform.position.x - horzExtent - 1.5f, transform.position.y);
+            Debug.Log(rightCollider.transform.position.x);
         }
-
-        private void Update()
-        {
-            rightCollider.transform.position = new Vector3(transform.position.x + horzExtent, transform.position.y);
-            leftCollider.transform.position = new Vector3(transform.position.x - horzExtent, transform.position.y);
-        }
-
+        
         void LateUpdate()
         {
             if (!player)
@@ -41,6 +39,9 @@ namespace Monster_Chase_Assets.Scripts
                 tempPos.x = maxX;
 
             transform.position = tempPos;
+            rightCollider.transform.position = new Vector3(transform.position.x + horzExtent + 1.5f, transform.position.y);
+            leftCollider.transform.position = new Vector3(transform.position.x - horzExtent - 1.5f, transform.position.y);
+            Debug.Log(rightCollider.transform.position.x);
         }
     }
 }

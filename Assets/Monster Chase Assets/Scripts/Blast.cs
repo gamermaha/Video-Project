@@ -9,8 +9,9 @@ namespace Monster_Chase_Assets.Scripts
 
         private void Start()
         {
-            Destroy(this.gameObject, _destroyAfterSec);
             _destroyAfterSec = MetaData.Instance.scriptableInstance._destroyAfterSec;
+            Destroy(this.gameObject, _destroyAfterSec);
+            
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿
-using System.Collections;
-using UnityEditor.MemoryProfiler;
+
 using UnityEngine;
 
 
@@ -22,10 +21,14 @@ namespace Monster_Chase_Assets.Scripts
             get { return _bulletsOnScreen; }
             set
             {
-                if (value < 0) 
+                if (value < 0)
+                {
                     _bulletsOnScreen = 0;
-                
-                _bulletsOnScreen = value;
+                }
+                else
+                {
+                    _bulletsOnScreen = value;
+                }
             }
         }
 
@@ -47,6 +50,7 @@ namespace Monster_Chase_Assets.Scripts
             
             if (BulletsOnScreen < magazineSize)
             {
+                
                 _spawnedFire = Instantiate(fireReference, transform.position, Quaternion.identity);
                 BulletsOnScreen++;
                 fireAudio.Play();

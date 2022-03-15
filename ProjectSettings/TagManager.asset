@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Enemy
   - Fire
+  - OutofCamera
   layers:
   - Default
   - TransparentFX

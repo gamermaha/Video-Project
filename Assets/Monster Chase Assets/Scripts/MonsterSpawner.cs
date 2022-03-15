@@ -39,12 +39,12 @@ namespace Monster_Chase_Assets.Scripts
                     if (randomIndex == 3)
                     {
                         spawnedMonster.transform.position = elevatedGhostPos.position;
-                        spawnedMonster.GetComponent<Monsters>().speed = Random.Range(4, 10);
+                        spawnedMonster.GetComponent<Monsters>().spawnManagerValues.monsterSpeed = Random.Range(4, 10);
                     }
                     else
                     {
                         spawnedMonster.transform.position = leftPos.position;
-                        spawnedMonster.GetComponent<Monsters>().speed = Random.Range(4, 10);
+                        spawnedMonster.GetComponent<Monsters>().spawnManagerValues.monsterSpeed = Random.Range(4, 10);
                     }
                 }
                 else
@@ -52,13 +52,12 @@ namespace Monster_Chase_Assets.Scripts
                     if (randomIndex == 3)
                     {
                         spawnedMonster.transform.position = elevatedGhostPos.position;
-                        spawnedMonster.GetComponent<Monsters>().speed = -Random.Range(4, 10);
+                        spawnedMonster.GetComponent<Monsters>().spawnManagerValues.monsterSpeed = -Random.Range(4, 10);
                         spawnedMonster.transform.localScale = new Vector3(-1f, 1f, 0f);
                     }
                     else
                     {
                         spawnedMonster.transform.position = rightPos.position;
-                        spawnedMonster.GetComponent<Monsters>().speed = -Random.Range(4, 10);
                         spawnedMonster.transform.localScale = new Vector3(-1f, 1f, 0f);
                     }
                     

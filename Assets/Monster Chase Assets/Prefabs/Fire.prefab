@@ -143,5 +143,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68374bdbc82467648b8a6fa5a6261f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  playerPlaying: {fileID: 1643723041, guid: 7f43a9071bc758b4d830bc27e8631251, type: 3}
+  spawnManagerValues: {fileID: 11400000, guid: 62a124dbc28a2d64194ae0950750b1d6, type: 2}

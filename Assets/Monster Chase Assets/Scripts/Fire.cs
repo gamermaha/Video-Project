@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    [SerializeField] private float speed = 30f;
+    public MyScriptableScript spawnManagerValues;
     
     private Rigidbody2D _rb;
     private bool _checkForFlip;
@@ -17,9 +17,9 @@ public class Fire : MonoBehaviour
         void Update()
     {
         if (_checkForFlip) 
-            _rb.velocity = new Vector2((-1 * speed), _rb.velocity.y);
+            _rb.velocity = new Vector2((-1 * spawnManagerValues.fireSpeed), _rb.velocity.y);
         else 
-            _rb.velocity = new Vector2(speed, _rb.velocity.y);
+            _rb.velocity = new Vector2(spawnManagerValues.fireSpeed, _rb.velocity.y);
         
     } 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -29,7 +29,12 @@ public class Fire : MonoBehaviour
             monsters.Die();
             Destroy(gameObject); 
         }
+        else if (collision.CompareTag("OutofCamera")) 
+            Destroy(gameObject);
     }
+   
+    
+    
     public void Shoot(bool flippedCheck) => _checkForFlip = flippedCheck;
     
 }

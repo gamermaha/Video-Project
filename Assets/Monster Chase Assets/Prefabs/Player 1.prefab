@@ -159,18 +159,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c72c5c55e687e5e49bfd23786a60e7d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForce: 10
-  jumpForce: 11
-  _enemyLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  firyfire: {fileID: 6229027567833392641, guid: 28a6f1773a3bd77458218cf4ce0c62e6,
-    type: 3}
+  spawnManagerValues: {fileID: 11400000, guid: 62a124dbc28a2d64194ae0950750b1d6, type: 2}
+  killed: {fileID: 435977581804780568, guid: 13f1c430a4cd07b4789be0c11da7bbf5, type: 3}
   myWeapon: {fileID: 314665310999481804}
   walkAudio: {fileID: 1709679667652931833}
   jumpAudio: {fileID: -2372058445707604015}
-  fireAudio: {fileID: -6287967317371300824}
-  killed: {fileID: 435977581804780568, guid: 13f1c430a4cd07b4789be0c11da7bbf5, type: 3}
   walking: 0
   isFlipped: 0
 --- !u!82 &1709679667652931833
@@ -641,8 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa880c10ac379c547bbc9bf6bd6c0e98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magazineSize: 3
-  waitTimeReload: 2
+  spawnManagerValues: {fileID: 11400000, guid: 62a124dbc28a2d64194ae0950750b1d6, type: 2}
   fireReference: {fileID: 6229027567833392641, guid: 28a6f1773a3bd77458218cf4ce0c62e6,
     type: 3}
   fireAudio: {fileID: -6287967317371300824}

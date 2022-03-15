@@ -15,9 +15,7 @@ public class Player : MonoBehaviour
     ////// Variables for Inspector Window //////
     
     // Variables for the Player
-    [Header("Movement Settings")]
-    [SerializeField] private float moveForce;
-    [SerializeField] private float jumpForce;
+    public MyScriptableScript spawnManagerValues;
     
     // GameObjects to be imported
     [Header("GameObjects Imported")]
@@ -70,7 +68,7 @@ public class Player : MonoBehaviour
     {
         walkAudio.Play();
         movementX = Input.GetAxisRaw("Horizontal");
-        transform.position += new Vector3(movementX, 0f, 0f) * moveForce * Time.deltaTime;
+        transform.position += new Vector3(movementX, 0f, 0f) * spawnManagerValues.moveForce * Time.deltaTime;
     }
 
     void AnimatePlayer()
@@ -105,7 +103,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
             isGrounded = false;
-            myBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            myBody.AddForce(new Vector2(0f, spawnManagerValues.jumpForce), ForceMode2D.Impulse);
             jumpAudio.Play();
         }
     }
@@ -133,9 +131,9 @@ public class Player : MonoBehaviour
     }
     void OnDeath()
     {
-        GameObject animation = Instantiate(killed, transform.position, Quaternion.identity);
-        ExecuteDeath();
-        Destroy(gameObject);
+        // GameObject animation = Instantiate(killed, transform.position, Quaternion.identity);
+        // ExecuteDeath();
+        // Destroy(gameObject);
     }
     void ExecuteDeath()
     {

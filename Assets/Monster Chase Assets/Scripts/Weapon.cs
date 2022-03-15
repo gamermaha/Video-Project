@@ -7,9 +7,7 @@ namespace Monster_Chase_Assets.Scripts
 {
     public class Weapon : MonoBehaviour
     {
-        [Header("Gun Dynamics")]
-        [SerializeField] private int magazineSize;
-        [SerializeField] private float waitTimeReload;
+        public MyScriptableScript spawnManagerValues;
         
         [Header("GameObjects Imported")]
         [SerializeField] private Fire fireReference;
@@ -24,7 +22,7 @@ namespace Monster_Chase_Assets.Scripts
 
         private void OnEnable()
         {
-            _bulletsInMagazine = magazineSize;
+            _bulletsInMagazine = spawnManagerValues.magazineSize;
         }
         public void FireBullet()
         {
@@ -47,8 +45,8 @@ namespace Monster_Chase_Assets.Scripts
         }
         private IEnumerator ReloadWeapon()
         {
-            yield return new WaitForSeconds(waitTimeReload);
-            _bulletsInMagazine = magazineSize;
+            yield return new WaitForSeconds(spawnManagerValues.waitTimeReload);
+            _bulletsInMagazine = spawnManagerValues.magazineSize;
             SetWeaponShooting(true);
         }
         private void SetWeaponShooting(bool canShoot)

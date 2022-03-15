@@ -171,5 +171,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e1bf183a27027469452822ac67a7d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
   killed: {fileID: 435977581804780568, guid: 13f1c430a4cd07b4789be0c11da7bbf5, type: 3}
+  spawnManagerValues: {fileID: 11400000, guid: 62a124dbc28a2d64194ae0950750b1d6, type: 2}

@@ -1,31 +1,40 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CameraFollower : MonoBehaviour
+namespace Monster_Chase_Assets.Scripts
 {
-    
-
-    [SerializeField] 
-    private float minX, maxX;
-    
-    private Transform player;
-    private Vector3 tempPos;
-    void Start() => player = GameObject.FindWithTag("Player").transform;
-    
-    void LateUpdate()
+    public class CameraFollower : MonoBehaviour
     {
-        if (!player)
-            return;
-            
-        tempPos = transform.position;
-        tempPos.x = player.position.x;
-        
-        if (tempPos.x < minX)
-            tempPos.x = minX;
-        if (tempPos.x > maxX)
-            tempPos.x = maxX;
+    
+        public MyScriptableScript spawnManagerValues;
 
-        transform.position = tempPos;
+        private Transform player;
+        private Vector3 tempPos;
+        public Vector3 position;
+        public float horzExtent;
+        public float rightPos;
+        public float leftPos;
+        void Start()
+        { 
+            horzExtent = Camera.main.orthographicSize * Screen.width / Screen.height;
+            player = GameObject.FindWithTag("Player").transform;
+        }
+
+        void LateUpdate()
+        {
+            if (!player)
+                return;
+            
+            tempPos = transform.position;
+            tempPos.x = player.position.x;
+        
+            if (tempPos.x < spawnManagerValues.minX)
+                tempPos.x = spawnManagerValues.minX;
+            if (tempPos.x > spawnManagerValues.maxX)
+                tempPos.x = spawnManagerValues.maxX;
+
+            transform.position = tempPos;
+            rightPos = transform.position.x + horzExtent/2;
+            rightPos = transform.position.x - horzExtent/2;
+        }
     }
 }

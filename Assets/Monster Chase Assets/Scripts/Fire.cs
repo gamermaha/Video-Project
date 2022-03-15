@@ -4,17 +4,23 @@ namespace Monster_Chase_Assets.Scripts
 {
     public class Fire : MonoBehaviour
     {
-        [SerializeField] private float speed = 3f;
+        
+        private float speed;
     
         private Rigidbody2D _rb;
         private bool _checkForFlip;
         private Weapon myWeapon;
 
 
-        void Start() => _rb = GetComponent<Rigidbody2D>();
+        void Start()
+        {
+            speed = MetaData.Instance.scriptableInstance.fireSpeed;
+            _rb = GetComponent<Rigidbody2D>();
+        }
 
         void Update()
         {
+            
             if (_checkForFlip) 
                 _rb.velocity = new Vector2((-1 * speed), _rb.velocity.y);
             else 

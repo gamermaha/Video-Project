@@ -8,9 +8,8 @@ namespace Monster_Chase_Assets.Scripts
 {
     public class Weapon : MonoBehaviour
     {
-        [Header("Gun Dynamics")]
-        [SerializeField] private int magazineSize;
-        [SerializeField] private float waitTimeReload;
+        private int magazineSize;
+        private float waitTimeReload;
         
         [Header("GameObjects Imported")]
         [SerializeField] private Fire fireReference;
@@ -33,16 +32,18 @@ namespace Monster_Chase_Assets.Scripts
         private bool canShoot = true;
         private bool playerFlipped;
         private Fire _spawnedFire;
-        
+
 
         private void OnEnable()
         {
             BulletsOnScreen = 0;
-            Debug.Log("Should reset: " + BulletsOnScreen);
+            magazineSize = MetaData.Instance.scriptableInstance.magazineSize;
+            waitTimeReload = MetaData.Instance.scriptableInstance.waitTimeReload;
         }
+
         public void FireBullet()
         {
-            if(canShoot == false) return;
+            //if(canShoot == false) return;
             
             if (BulletsOnScreen < magazineSize)
             {
@@ -52,9 +53,7 @@ namespace Monster_Chase_Assets.Scripts
                 _spawnedFire.Shoot(playerFlipped);
                 return;
             }
-            SetWeaponShooting(false);
         }
-        private void SetWeaponShooting(bool canShoot) => this.canShoot = canShoot;
         public void PlayerDirection(bool playerdir) => playerFlipped = playerdir;
     }
 }

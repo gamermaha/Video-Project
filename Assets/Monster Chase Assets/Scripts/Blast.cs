@@ -5,7 +5,12 @@ namespace Monster_Chase_Assets.Scripts
 {
     public class Blast : MonoBehaviour
     {
-        [SerializeField] private float _destroyAfterSec = 0.5f; 
-        private void Start() => Destroy(this.gameObject , _destroyAfterSec);
+        private float _destroyAfterSec;
+
+        private void Start()
+        {
+            Destroy(this.gameObject, _destroyAfterSec);
+            _destroyAfterSec = MetaData.Instance.scriptableInstance._destroyAfterSec;
+        }
     }
 }

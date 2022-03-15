@@ -205,20 +205,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1140455233148969175}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &103621694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 103621693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7aa3ace55efd66458171af2bf577786, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameOver: {fileID: 103621695}
-  buttonClick: {fileID: 103621696}
 --- !u!82 &103621695
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1376,7 +1362,7 @@ PrefabInstance:
         type: 3}
       propertyPath: uiController
       value: 
-      objectReference: {fileID: 103621694}
+      objectReference: {fileID: 0}
     - target: {fileID: 1140455232566386141, guid: b8298ca2330de264b9f323237670b6dc,
         type: 3}
       propertyPath: m_Name

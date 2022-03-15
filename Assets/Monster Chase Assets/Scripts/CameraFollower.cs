@@ -1,31 +1,46 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
+using static UnityEngine.Screen;
 
-public class CameraFollower : MonoBehaviour
+namespace Monster_Chase_Assets.Scripts
 {
-    
-
-    [SerializeField] 
-    private float minX, maxX;
-    
-    private Transform player;
-    private Vector3 tempPos;
-    void Start() => player = GameObject.FindWithTag("Player").transform;
-    
-    void LateUpdate()
+    public class CameraFollower : MonoBehaviour
     {
-        if (!player)
-            return;
-            
-        tempPos = transform.position;
-        tempPos.x = player.position.x;
-        
-        if (tempPos.x < minX)
-            tempPos.x = minX;
-        if (tempPos.x > maxX)
-            tempPos.x = maxX;
 
-        transform.position = tempPos;
+        [SerializeField] private GameObject rightCollider;
+        [SerializeField] private GameObject leftCollider;
+        [SerializeField] private float minX, maxX;
+    
+        private Transform player;
+        private Vector3 tempPos;
+        private float horzExtent;
+
+        void Start()
+        {
+            player = GameObject.FindWithTag("Player").transform;
+            horzExtent = Camera.main.orthographicSize * Screen.width / Screen.height;
+        }
+
+        private void Update()
+        {
+            rightCollider.transform.position = new Vector3(transform.position.x + horzExtent, transform.position.y);
+            leftCollider.transform.position = new Vector3(transform.position.x - horzExtent, transform.position.y);
+        }
+
+        void LateUpdate()
+        {
+            if (!player)
+                return;
+            
+            tempPos = transform.position;
+            tempPos.x = player.position.x;
+        
+            if (tempPos.x < minX)
+                tempPos.x = minX;
+            if (tempPos.x > maxX)
+                tempPos.x = maxX;
+
+            transform.position = tempPos;
+        }
     }
 }

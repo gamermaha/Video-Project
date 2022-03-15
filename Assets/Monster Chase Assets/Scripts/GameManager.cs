@@ -7,7 +7,7 @@ namespace Monster_Chase_Assets.Scripts
     {
         [Header("GameObjects Imported")]
         [SerializeField] private GameObject[] players;
-        [SerializeField] private GameplayUIController uiController;
+        //[SerializeField] private GameplayUIController uiController;
         [SerializeField] private AudioSource buttonClick;
 
         public static GameManager instance;
@@ -53,10 +53,14 @@ namespace Monster_Chase_Assets.Scripts
         }
         void PlayerDiedListener(bool alive)
         {
-            if (uiController != null)
-                uiController.GameOver();
-            
+            GameOver();
             _spawnedPlayer.PlayerDiedInfo -= PlayerDiedListener;
+        }
+        
+        public void GameOver()
+        {
+            //gameOver.Play();
+            SceneManager.LoadScene("GameOver");
         }
     }
 }

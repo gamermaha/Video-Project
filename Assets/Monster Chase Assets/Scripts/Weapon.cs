@@ -1,5 +1,6 @@
 ﻿
 using System.Collections;
+using UnityEditor.MemoryProfiler;
 using UnityEngine;
 
 
@@ -16,7 +17,19 @@ namespace Monster_Chase_Assets.Scripts
         [SerializeField] private AudioSource fireAudio;
         
         //Booleans
-        private int _bulletsInMagazine;
+        private static int _bulletsOnScreen = 0;
+        public static int BulletsOnScreen
+        {
+            get { return _bulletsOnScreen; }
+            set
+            {
+                if (value < 0) 
+                    _bulletsOnScreen = 0;
+                
+                _bulletsOnScreen = value;
+            }
+        }
+
         private bool canShoot = true;
         private bool playerFlipped;
         private Fire _spawnedFire;
@@ -24,36 +37,24 @@ namespace Monster_Chase_Assets.Scripts
 
         private void OnEnable()
         {
-            _bulletsInMagazine = magazineSize;
+            BulletsOnScreen = 0;
+            Debug.Log("Should reset: " + BulletsOnScreen);
         }
         public void FireBullet()
         {
-            // 0: Just Fallback If Shooting Is Not Allowed
             if(canShoot == false) return;
-
-            // 1: Shoot If Magazine's Bullet Count > 0 
-            if (_bulletsInMagazine > 0)
+            
+            if (BulletsOnScreen < magazineSize)
             {
                 _spawnedFire = Instantiate(fireReference, transform.position, Quaternion.identity);
+                BulletsOnScreen++;
                 fireAudio.Play();
                 _spawnedFire.Shoot(playerFlipped);
-                _bulletsInMagazine--;
                 return;
             }
-            
-            // 2: If Bullet Count Is Zero , Reloading Schedule...
             SetWeaponShooting(false);
-            StartCoroutine(ReloadWeapon());
         }
-        private IEnumerator ReloadWeapon()
-        {
-            yield return new WaitForSeconds(waitTimeReload);
-            _bulletsInMagazine = magazineSize;
-            SetWeaponShooting(true);
-        }
-        private void SetWeaponShooting(bool canShoot)
-            => this.canShoot = canShoot;
-        public void PlayerDirection(bool playerdir)
-            => playerFlipped = playerdir;
+        private void SetWeaponShooting(bool canShoot) => this.canShoot = canShoot;
+        public void PlayerDirection(bool playerdir) => playerFlipped = playerdir;
     }
 }

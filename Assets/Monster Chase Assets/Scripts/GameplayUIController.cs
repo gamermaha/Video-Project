@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Monster_Chase_Assets.Scripts
@@ -11,14 +12,5 @@ namespace Monster_Chase_Assets.Scripts
 
         public void HomeButton() => SceneManager.LoadScene("MainMenu");
         
-
-        public void GameOver()
-        {
-            gameOver.Play();
-            SceneManager.LoadScene("GameOver");
-        }
-
-        
-    
     }
 }

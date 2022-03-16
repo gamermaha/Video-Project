@@ -120,7 +120,8 @@ namespace Monster_Chase_Assets.Scripts
         void OnDeath()
         {
             GameObject animation = Instantiate(killed, transform.position, Quaternion.identity);
-            ExecuteDeath();
+            //ExecuteDeath();
+            EventManager.TriggerEvent("PlayerDied");
             Destroy(gameObject);
         }
         void ExecuteDeath()

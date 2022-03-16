@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f11c6d707845db84282377dd13baec92, type: 3}
   m_Name: Data
   m_EditorClassIdentifier: 
-  fireSpeed: 17
+  fireSpeed: 15
   monsterSpeed: 5
   magazineSize: 4
   waitTimeReload: 0

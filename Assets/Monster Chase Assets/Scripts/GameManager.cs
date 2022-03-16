@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 namespace Monster_Chase_Assets.Scripts
@@ -11,8 +12,9 @@ namespace Monster_Chase_Assets.Scripts
         [SerializeField] private GameplayUIController _uiController;
         
         public static GameManager instance;
-        private Player _spawnedPlayer;
         private int _charIndex;
+
+        private UnityAction _playerDiedListener;
 
         public int CharIndex
         {
@@ -21,6 +23,7 @@ namespace Monster_Chase_Assets.Scripts
         }
         private void Awake()
         {
+            _playerDiedListener = new UnityAction (PlayerDiedFunction);
             if (instance == null)
             {
                 instance = this;
@@ -46,15 +49,15 @@ namespace Monster_Chase_Assets.Scripts
                 if (CharIndex == 0 || CharIndex == 1 )
                 {
                     AudioManager.instance.buttonClick.Play();
-                    _spawnedPlayer = Instantiate(players[CharIndex]).GetComponent<Player>();
-                    _spawnedPlayer.PlayerDiedInfo += PlayerDiedListener;
+                    Instantiate(players[CharIndex]).GetComponent<Player>();
+                    EventManager.StartListening("PlayerDied", _playerDiedListener);
                 }
             }
         }
-        void PlayerDiedListener(bool alive)
-        {
+        void PlayerDiedFunction()
+        { 
             _uiController.GameOver();
-            _spawnedPlayer.PlayerDiedInfo -= PlayerDiedListener;
+            EventManager.StopListening("PlayerDied", _playerDiedListener);
         }
         
         

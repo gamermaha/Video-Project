@@ -12,8 +12,7 @@ namespace Monster_Chase_Assets.Scripts
         
         [Header("GameObjects Imported")]
         [SerializeField] private Fire fireReference;
-        [SerializeField] private AudioSource fireAudio;
-        
+
         //Booleans
         private static int _bulletsOnScreen = 0;
         public static int BulletsOnScreen
@@ -29,6 +28,7 @@ namespace Monster_Chase_Assets.Scripts
                 {
                     _bulletsOnScreen = value;
                 }
+                Debug.Log(BulletsOnScreen);
             }
         }
 
@@ -53,7 +53,7 @@ namespace Monster_Chase_Assets.Scripts
                 
                 _spawnedFire = Instantiate(fireReference, transform.position, Quaternion.identity);
                 BulletsOnScreen++;
-                fireAudio.Play();
+                AudioManager.instance.fireAudio.Play();
                 _spawnedFire.Shoot(playerFlipped);
                 return;
             }

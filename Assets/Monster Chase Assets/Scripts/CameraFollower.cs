@@ -41,7 +41,6 @@ namespace Monster_Chase_Assets.Scripts
             transform.position = tempPos;
             rightCollider.transform.position = new Vector3(transform.position.x + horzExtent + 1.5f, transform.position.y);
             leftCollider.transform.position = new Vector3(transform.position.x - horzExtent - 1.5f, transform.position.y);
-            Debug.Log(rightCollider.transform.position.x);
         }
     }
 }

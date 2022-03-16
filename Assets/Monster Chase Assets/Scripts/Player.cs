@@ -18,15 +18,7 @@ namespace Monster_Chase_Assets.Scripts
         [Header("GameObjects Imported")]
         public GameObject killed;
         [SerializeField] private Weapon myWeapon;
-    
-    
-    
-        // Audio Sources 
-        [Header("Audio Sources Imported")]
-        [SerializeField] private AudioSource walkAudio;
-        [SerializeField] private AudioSource jumpAudio;
- 
-    
+        
         ///// Variables for Script////////
     
         private float movementX;
@@ -63,7 +55,7 @@ namespace Monster_Chase_Assets.Scripts
     
         void PlayerMoveKeyboard()
         {
-            walkAudio.Play();
+            AudioManager.instance.walkAudio.Play();
             movementX = Input.GetAxisRaw("Horizontal");
             transform.position += new Vector3(movementX, 0f, 0f) * moveForce * Time.deltaTime;
         }
@@ -89,11 +81,10 @@ namespace Monster_Chase_Assets.Scripts
                 walking = false;
             }
             if (walking)
-                walkAudio.Play();
+                AudioManager.instance.walkAudio.Play();
             else
-            {
-                walkAudio.Stop();
-            }
+                AudioManager.instance.walkAudio.Stop();
+            
         }
         void PlayerJump()
         {
@@ -101,7 +92,7 @@ namespace Monster_Chase_Assets.Scripts
             {
                 isGrounded = false;
                 myBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-                jumpAudio.Play();
+                AudioManager.instance.jumpAudio.Play();
             }
         }
         void PlayerFire()
